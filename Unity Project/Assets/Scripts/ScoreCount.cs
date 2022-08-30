@@ -22,8 +22,10 @@ public class ScoreCount : MonoBehaviour
         	bool gateFound = GameObject.Find("Ground/SoftStar").GetComponent<GatesLoc>().gateFound;
         	int gateIndex = GameObject.Find("Ground/SoftStar").GetComponent<GatesLoc>().gateZloc;
 		int endTrial = GameObject.Find("UDPComms").GetComponent<UDPReceive>().endTrial;
+		
 		if (endTrial == 0) {
-			if (gateFound && gateIndex < 2)
+			// Checking when index == 0 might not work reliably due to lost UDP packet
+			if (gateFound && gateIndex < 2) 
         		{
             			FindScore(bikePos, gatePos);
         		}
@@ -44,7 +46,6 @@ public class ScoreCount : MonoBehaviour
         	}
         	else if (posError <= 0.22)
         	{
-            		//score = (int)(1250f * (0.1f - posError));
 			score = (int)(500f * (0.22f - posError));
             		scoreText.text = "Score: " + score;
         	}
