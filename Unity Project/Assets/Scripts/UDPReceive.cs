@@ -15,16 +15,20 @@ public class UDPReceive : MonoBehaviour
   [Tooltip("Localport")]
   [SerializeField] public int portLocal = 8006;
   [Tooltip("Remote port")]
-  [SerializeField] public int portRemote = 8005;
+  [SerializeField] public int portRemote = 8005; // Set to the same as Simulink UDP output
 
   [Header("Position")]
-  [SerializeField] public float vivePos;
+  [SerializeField] public float vivePos; // Store the bicycle position here
   
   [Header("Current Line")]
-  [SerializeField] public int currLine;
+  [SerializeField] public int currLine; // Store the current time along the reference here
+  // Rather than sending the whole reference over UDP,
+  // I am only sending the current time, which I then
+  // use to read a corresponding line from the .txt file
+  // containing the reference.
 
   [Header("End of Trial flag")]
-  [SerializeField] public int endTrial;
+  [SerializeField] public int endTrial; // Store the end indicator here
 
   // Create necessary UdpClient objects
   UdpClient client;
@@ -46,12 +50,12 @@ public class UDPReceive : MonoBehaviour
 
   public void Update ()
   {
-    string newUdpData = getLatestUDPPacket();
-    string[] splitData = newUdpData.Trim().Split(',');
+    string newUdpData = getLatestUDPPacket(); // Read the UDP packet 
+    string[] splitData = newUdpData.Trim().Split(','); // i am using commas to separate data
     if (newUdpData != "") {
-      currLine = int.Parse(splitData[0]);
-      vivePos = float.Parse(splitData[1]);
-      endTrial = int.Parse(splitData[2]);
+      currLine = int.Parse(splitData[0]); // First field is the time along the reference
+      vivePos = float.Parse(splitData[1]); // Second field is the bicycle location
+      endTrial = int.Parse(splitData[2]); // Third field indicates whether the trial ended
     }
   }
 
