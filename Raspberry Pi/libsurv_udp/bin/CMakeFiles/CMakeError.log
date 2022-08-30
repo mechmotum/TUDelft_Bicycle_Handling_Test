@@ -1,0 +1,120 @@
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_742fc/fast && gmake[1]: Entering directory '/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp'
+/usr/bin/gmake  -f CMakeFiles/cmTC_742fc.dir/build.make CMakeFiles/cmTC_742fc.dir/build
+gmake[2]: Entering directory '/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_742fc.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD -o CMakeFiles/cmTC_742fc.dir/src.c.o -c /home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_742fc
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_742fc.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD CMakeFiles/cmTC_742fc.dir/src.c.o -o cmTC_742fc  -lz 
+/usr/bin/ld: CMakeFiles/cmTC_742fc.dir/src.c.o: in function `main':
+src.c:(.text+0x40): undefined reference to `pthread_create'
+/usr/bin/ld: src.c:(.text+0x4c): undefined reference to `pthread_detach'
+/usr/bin/ld: src.c:(.text+0x58): undefined reference to `pthread_cancel'
+/usr/bin/ld: src.c:(.text+0x68): undefined reference to `pthread_join'
+collect2: error: ld returned 1 exit status
+gmake[2]: *** [CMakeFiles/cmTC_742fc.dir/build.make:106: cmTC_742fc] Error 1
+gmake[2]: Leaving directory '/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp'
+gmake[1]: *** [Makefile:140: cmTC_742fc/fast] Error 2
+gmake[1]: Leaving directory '/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the include file gattlib.h exists failed with the following output:
+Change Dir: /home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_83c7f/fast && gmake[1]: Entering directory '/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp'
+/usr/bin/gmake  -f CMakeFiles/cmTC_83c7f.dir/build.make CMakeFiles/cmTC_83c7f.dir/build
+gmake[2]: Entering directory '/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_83c7f.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_83c7f.dir/CheckIncludeFile.c.o -c /home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: gattlib.h: No such file or directory
+    1 | #include <gattlib.h>
+      |          ^~~~~~~~~~~
+compilation terminated.
+gmake[2]: *** [CMakeFiles/cmTC_83c7f.dir/build.make:85: CMakeFiles/cmTC_83c7f.dir/CheckIncludeFile.c.o] Error 1
+gmake[2]: Leaving directory '/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp'
+gmake[1]: *** [Makefile:140: cmTC_83c7f/fast] Error 2
+gmake[1]: Leaving directory '/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file lapacke/lapacke.h exists failed with the following output:
+Change Dir: /home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_bd9de/fast && gmake[1]: Entering directory '/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp'
+/usr/bin/gmake  -f CMakeFiles/cmTC_bd9de.dir/build.make CMakeFiles/cmTC_bd9de.dir/build
+gmake[2]: Entering directory '/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_bd9de.dir/CheckIncludeFile.c.o
+/usr/bin/cc   -fPIC -Wall -Wno-unused-variable -Wno-switch -Wno-parentheses -Wno-missing-braces -Werror=return-type -fvisibility=hidden -Werror=vla -fno-math-errno -Werror=pointer-arith -std=gnu99 -Werror=incompatible-pointer-types -Werror=implicit-function-declaration -Werror=missing-field-initializers  -fPIC -Wall -Wno-unused-variable -Wno-switch -Wno-parentheses -Wno-missing-braces -Werror=return-type -fvisibility=hidden -Werror=vla -fno-math-errno -Werror=pointer-arith -std=gnu99 -Werror=incompatible-pointer-types -Werror=implicit-function-declaration -Werror=missing-field-initializers  -fPIC -Wall -Wno-unused-variable -Wno-switch -Wno-parentheses -Wno-missing-braces -Werror=return-type -fvisibility=hidden -Werror=vla -fno-math-errno -Werror=missing-field-initializers -Werror=pointer-arith -std=gnu99 -Werror=incompatible-pointer-types -Werror=implicit-function-declaration   -o CMakeFiles/cmTC_bd9de.dir/CheckIncludeFile.c.o -c /home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: lapacke/lapacke.h: No such file or directory
+    1 | #include <lapacke/lapacke.h>
+      |          ^~~~~~~~~~~~~~~~~~~
+compilation terminated.
+gmake[2]: *** [CMakeFiles/cmTC_bd9de.dir/build.make:85: CMakeFiles/cmTC_bd9de.dir/CheckIncludeFile.c.o] Error 1
+gmake[2]: Leaving directory '/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp'
+gmake[1]: *** [Makefile:140: cmTC_bd9de/fast] Error 2
+gmake[1]: Leaving directory '/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file libusb.h exists failed with the following output:
+Change Dir: /home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_337cd/fast && gmake[1]: Entering directory '/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp'
+/usr/bin/gmake  -f CMakeFiles/cmTC_337cd.dir/build.make CMakeFiles/cmTC_337cd.dir/build
+gmake[2]: Entering directory '/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_337cd.dir/CheckIncludeFile.c.o
+/usr/bin/cc -D_GNU_SOURCE  -fPIC -Wall -Wno-unused-variable -Wno-switch -Wno-parentheses -Wno-missing-braces -Werror=return-type -fvisibility=hidden -Werror=vla -fno-math-errno -Werror=pointer-arith -std=gnu99 -Werror=incompatible-pointer-types -Werror=implicit-function-declaration -Werror=missing-field-initializers   -o CMakeFiles/cmTC_337cd.dir/CheckIncludeFile.c.o -c /home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: libusb.h: No such file or directory
+    1 | #include <libusb.h>
+      |          ^~~~~~~~~~
+compilation terminated.
+gmake[2]: *** [CMakeFiles/cmTC_337cd.dir/build.make:85: CMakeFiles/cmTC_337cd.dir/CheckIncludeFile.c.o] Error 1
+gmake[2]: Leaving directory '/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp'
+gmake[1]: *** [Makefile:140: cmTC_337cd/fast] Error 2
+gmake[1]: Leaving directory '/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file libusb/libusb.h exists failed with the following output:
+Change Dir: /home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_68e86/fast && gmake[1]: Entering directory '/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp'
+/usr/bin/gmake  -f CMakeFiles/cmTC_68e86.dir/build.make CMakeFiles/cmTC_68e86.dir/build
+gmake[2]: Entering directory '/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_68e86.dir/CheckIncludeFile.c.o
+/usr/bin/cc -D_GNU_SOURCE  -fPIC -Wall -Wno-unused-variable -Wno-switch -Wno-parentheses -Wno-missing-braces -Werror=return-type -fvisibility=hidden -Werror=vla -fno-math-errno -Werror=pointer-arith -std=gnu99 -Werror=incompatible-pointer-types -Werror=implicit-function-declaration -Werror=missing-field-initializers   -o CMakeFiles/cmTC_68e86.dir/CheckIncludeFile.c.o -c /home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: libusb/libusb.h: No such file or directory
+    1 | #include <libusb/libusb.h>
+      |          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+gmake[2]: *** [CMakeFiles/cmTC_68e86.dir/build.make:85: CMakeFiles/cmTC_68e86.dir/CheckIncludeFile.c.o] Error 1
+gmake[2]: Leaving directory '/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp'
+gmake[1]: *** [Makefile:140: cmTC_68e86/fast] Error 2
+gmake[1]: Leaving directory '/home/pi/libsurv_udp/bin/CMakeFiles/CMakeTmp'
+
+
+
