@@ -1,0 +1,5 @@
+hostname: ras-pive.local
+user: pi
+password: htcvive
+
+./libsurvive_udp/bin/survive-udp --force-calibrate
