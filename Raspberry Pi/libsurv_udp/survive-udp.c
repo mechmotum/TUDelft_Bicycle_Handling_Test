@@ -28,8 +28,11 @@ void intHandler(int dummy) {
 
 #endif
 
+// Use ipconfig to find the IP of the receiver
+// or set to 127.0.0.1 for local machine
+// Don't forget to let UDP port 4950 through Windows Firewall
 #define SERVERPORT "4950"
-#define SENDTOIP "192.168.137.1"
+#define SENDTOIP "192.168.137.1"  
 
 static void log_fn(SurviveSimpleContext *actx, SurviveLogLevel logLevel, const char *msg) {
 	fprintf(stderr, "(%7.3f) SimpleApi: %s\n", survive_simple_run_time(actx), msg);
@@ -41,7 +44,8 @@ int main(int argc, char **argv) {
 	signal(SIGTERM, intHandler);
 	signal(SIGKILL, intHandler);
 #endif
-
+	
+	// Set up UDP socket
 	int sockfd;
 	struct addrinfo hints, *servinfo, *p;
 	int rv;
@@ -78,17 +82,21 @@ int main(int argc, char **argv) {
 	while (keepRunning && survive_simple_wait_for_event(actx, &event) != SurviveSimpleEventType_Shutdown) {
 		switch (event.event_type) {
 		case SurviveSimpleEventType_PoseUpdateEvent: {
+			// Read the updated pose and position of the tracker
 			const struct SurviveSimplePoseUpdatedEvent *pose_event = survive_simple_get_pose_updated_event(&event);
 			SurvivePose pose = pose_event->pose;
 			FLT timecode = pose_event->time;
 			SurviveVelocity vel = pose_event->velocity;
-
+			
+			// Put the pose and position data into a string
 			int n = sprintf(msg, "%7.3f,%4.3f,%4.3f,%4.3f,%4.3f,%4.3f,%4.3f,%4.3f\n",
 				timecode,
 				pose.Pos[0], pose.Pos[1], pose.Pos[2],
 				pose.Rot[0], pose.Rot[1], pose.Rot[2], pose.Rot[3]);
-
+			
+			// Send the string over UDP
 			sendto(sockfd, msg, n, 0, p->ai_addr, p->ai_addrlen);
+			// Print some pose data to console every 5 samples
 			if (count == 5) {
 				printf("(%7.3f) %4.3f %4.3f %4.3f\n", timecode, pose.Pos[0], pose.Pos[1], pose.Pos[2]);
 				count = 0;
