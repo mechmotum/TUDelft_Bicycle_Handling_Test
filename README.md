@@ -11,6 +11,7 @@ Using the whole software package that was developed for the MPC controller would
 - Raspberry Pi 4 Model B 4GB (I used a headless 32-bit Raspberry OS)
 - Simulink with [Simulink Desktop Real-Time](https://nl.mathworks.com/products/simulink-desktop-real-time.html), [Aerospace Blockset](https://nl.mathworks.com/products/aerospace-blockset.html) and [DSP System](https://www.mathworks.com/products/dsp-system.html) toolboxes
 - [libsurvive](https://github.com/cntools/libsurvive) (currently on Raspberry Pi, but Windows should be possible)
+- NeoKey Trinkey or Arduino Uno with a button
 
 ## File structure
 `Arduino Uno/` and `NeoKey Trinkey/` -- A button is needed to start the trial/test. Originally, for the MPC, a personal NeoKey Trinkey was used as it had two buttons and an LED. For this application, a simple Arduino Uno with a button is enough. Code for both of them are held here.
