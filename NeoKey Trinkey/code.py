@@ -50,20 +50,13 @@ while True:
         else:
             pixel.fill((0x0)) # Nothing
 
-    if button_gate:
-        button_number = 1
-    else:
-        button_number = 2
-
+    # Print 1 if it was touched, 0 if not
     if touch_gate:
         touch_number = 1
     else:
         touch_number = 0
-
-    #if time.monotonic() - lastPrint > 0.05:
-    #    print("%d,%d" % (touch_number, button_number))
-    #    lastPrint = time.monotonic()
-
+    
+    # Print every 50ms to avoid overwhelming the serial buffer
     if time.monotonic() - lastPrint > 0.05:
         print("%d" % (touch_number))
         lastPrint = time.monotonic()
